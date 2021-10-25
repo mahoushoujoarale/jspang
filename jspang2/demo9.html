@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        template:`
+            <h2>欢迎光临红浪漫-请选择你的技师</h2>
+            <honglangman>
+                <template v-slot:one>1.男宾一位，请上二楼</template>
+                <template v-slot:two>3.您点了198泰式服务</template>
+            </honglangman>
+        `
+    })
+    app.component('jishi',{
+        template:`
+            <div>
+                您选择了<slot><span style="color:red">晓红</span></slot>为您服务！
+            </div>
+        `
+    })
+    app.component('honglangman',{
+        template:`
+            <div>
+                <slot name="one"></slot>
+                <div>2.您选择了大脚为您服务</div>
+                <slot name="two"></slot>
+            </div>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

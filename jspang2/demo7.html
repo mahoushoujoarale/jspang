@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                counter:0
+            }
+        },
+        methods:{
+            handleAddCounter(param){
+                this.counter += param
+            }
+        },
+        template:`
+            <h2>jspang.com</h2>
+            <Counter :counter="this.counter" @add="handleAddCounter"/>
+        `
+    })
+    app.component('Counter',{
+        props:['counter'],
+        emits:['add'],
+        methods:{
+            handleClick(){
+                this.$emit('add',2)
+            }
+        },
+        template:`
+            [{{this.counter}}]
+            <button @click="handleClick">点一下增加</button>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

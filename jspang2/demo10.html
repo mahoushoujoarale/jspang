@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        template:`
+            <h2>欢迎光临红浪漫-请选择你的技师</h2>
+            <List v-slot="{item}">
+                <span>
+                    <div>{{item}}</div>
+                </span>
+            </List>
+        `
+    })
+    app.component('List',{
+        data(){
+            return{
+                list:['大脚','刘英','晓红'],
+            }
+        },
+        template:`
+            <div>
+                <slot v-for="item in list" :item="item"></slot>
+            </div>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

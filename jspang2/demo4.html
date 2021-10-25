@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                name:'JSpang 技术胖',
+                pay:()=>{
+                    alert('给你800元')
+                },
+            }
+        },
+        template:`
+            <h2>jspang.com</h2>
+            <Son :name="this.name"/>
+        `
+    })
+    app.component('Son',{
+        props:{
+            name:{
+                type:String,
+                validator:function(value){
+                    return value.search('JSpang') != -1
+                },
+                default:'JSpang.com',
+                required:true,
+            }
+        },
+        template:`
+            <div>Son {{name}} div</div>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

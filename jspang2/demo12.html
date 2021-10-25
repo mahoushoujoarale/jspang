@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        template:`
+            <tongbu/>
+            <async-component/>
+        `
+    })
+    app.component('tongbu',{
+        template:`
+            <div>jspang.com</div>
+        `
+    })
+    app.component('async-component',Vue.defineAsyncComponent(
+        ()=>{
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve({
+                        template:`<div>这是一个异步组件</div>`
+                    })
+                },3000)
+            })
+        }
+    ))
+    app.mount("#app")
+</script>
+</html>

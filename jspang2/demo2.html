@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const counter={
+        data(){
+            return{
+                count:0,
+            }
+        },
+        template:`
+            {{count}}
+            <button @click='this.count++'>点一下加一</button>
+        `
+    }
+    const xiedajiao={
+        template:`
+            <h2>谢大脚</h2>
+        `
+    }
+    const app=Vue.createApp({
+        components:{
+            counter,
+            xiedajiao,
+        },
+        template:`
+            <website />
+            <description />
+            <counter />
+            <xiedajiao/>
+        `
+    })
+    app.component('website',{
+        template:`
+            <h2>jspang.com</h2>
+        `
+    })
+    app.component('description',{
+        template:`
+            <div>技术胖的博客</div>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

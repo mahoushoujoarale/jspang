@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                name:'技术大胖',
+                pay:()=>{
+                    alert('给你800元')
+                },
+            }
+        },
+        template:`
+            <h2>jspang.com</h2>
+            <Son v-bind:name="this.name"/>
+            <xiaojiejie v-bind:pay="this.pay"/>
+        `
+    })
+    app.component('Son',{
+        props:['name'],
+        template:`
+            <div>Son {{name}} div</div>
+        `
+    })
+    app.component('xiaojiejie',{
+        props:['pay'],
+        methods:{
+            handleClick(){
+                alert('打钱'),
+                this.pay()
+            }
+        },
+        template:`
+            <div @click="handleClick()">和小姐姐打招呼</div>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

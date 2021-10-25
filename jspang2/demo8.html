@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                haojiahuo:'刘英'
+            }
+        },
+        template:`
+            <h2>欢迎光临红浪漫-请选择你的技师</h2>
+            <jishi>
+                <div style="color:blue;font-size:50;">{{haojiahuo}}</div>
+                <project/>
+            </jishi>
+        `
+    })
+    app.component('jishi',{
+        template:`
+            <div>
+                <span>经过您的慎重考虑，最终选择了</span>
+                <span>
+                    <slot></slot>
+                </span>
+            </div>
+        `
+    })
+    app.component('project',{
+        template:`
+            <span style="color:purple;font-size:50px;">项目是胖哥老三样</span>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

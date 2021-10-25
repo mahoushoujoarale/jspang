@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                showComponent:'dajiao',
+            }
+        },
+        methods:{
+            handleClick(){
+                this.showComponent = this.showComponent == 'dajiao' ? 'liuying' : 'dajiao';
+            }
+        },
+        template:`
+            <h2>欢迎光临红浪漫-请选择你的技师</h2>
+            <keep-alive>
+                <component :is="showComponent"/>
+            </keep-alive>
+            <div><button @click="handleClick">切换佳丽</button></div>
+        `
+    })
+    app.component('dajiao',{
+        template:`
+            <img src="https://newimg.jspang.com/xiedajiao01.jpg"/>
+        `
+    })
+    app.component('liuying',{
+        template:`
+            <img src="https://newimg.jspang.com/liuying01.jpg"/>
+        `
+    })
+    app.mount("#app")
+</script>
+</html>

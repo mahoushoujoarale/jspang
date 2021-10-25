@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        @keyframes tracking-in-expand {
+            0% {
+                letter-spacing: -0.5em;
+                opacity: 0;
+            }
+            40% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes tracking-out-contract {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                letter-spacing: -0.5em;
+                opacity: 0;
+            }
+        }
+        .tracking-in-expand {
+            -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+        .tracking-out-contract {
+            -webkit-animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app=Vue.createApp({
+        data(){
+            return{
+                isShow:false,
+            }
+        },
+        methods:{
+            handleClick(){
+                this.isShow = !this.isShow;
+            }
+        },
+        template:`
+            <transition
+                enter-active-class="tracking-in-expand"
+                leave-active-class="tracking-out-contract"
+            >
+            <div v-if="isShow">技术胖讲程序</div>
+            </transition>
+            <button @click="handleClick">切换动画</button>
+        `
+    })
+    const vm=app.mount("#app")
+</script>
+</html>
